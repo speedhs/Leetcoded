@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<string> ans;
+    void solve(int &n, string &path, int open) {
+        if(path.length()==2*n) {
+            ans.push_back(path);
+            return;
+        }
+        if(path.length()-open>open)return;
+        if(open!=n) {
+            path.push_back('(');
+            solve(n,path,open+1);
+            path.pop_back();
+        }
+        path.push_back(')');
+        solve(n,path,open);
+        path.pop_back();        
+    }
+    vector<string> generateParenthesis(int n) {
+        string path;
+        solve(n,path,0);
+        return ans;
+    }
+};
