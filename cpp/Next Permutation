@@ -1,0 +1,22 @@
+class Solution {
+public:
+    void nextPermutation(vector<int>& nums) {
+        for(int i=nums.size()-1;i>=1;i--) {
+            if(nums[i-1]<nums[i]) {
+                int st=i-1;
+                for(int j=i;j<nums.size();j++) {
+                    if(nums[j]<=nums[st]) {
+                        swap(nums[st],nums[j-1]);
+                        reverse(nums.begin()+st+1,nums.end());
+                        return;
+                    }
+                }
+                swap(nums[st],nums[nums.size()-1]);
+                reverse(nums.begin()+st+1,nums.end());
+                return;
+            }
+        }
+        reverse(nums.begin(),nums.end());
+        //next_permutation(nums.begin(),nums.end());
+    }
+};
